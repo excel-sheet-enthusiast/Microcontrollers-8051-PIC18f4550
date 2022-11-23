@@ -1,0 +1,19 @@
+// MEMORY BLOCK TRANSFER
+
+#include<reg51.h>
+void main
+
+unsigned char *src, *des, i;
+
+src= ;
+des= ; 
+
+for(I=0; I<10; I++)
+{
+*src = *des;
+src++;
+des++;
+} 
+
+
+

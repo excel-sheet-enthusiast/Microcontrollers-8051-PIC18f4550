@@ -1,0 +1,47 @@
+RELAY_BUZZER
+
+#include<p18f4550.h>
+#include "vector_relocate.h"
+
+void delay(unsigned int t);
+void delay(unsigned int t){
+unsigned int i,j;
+for(i=0;i<t;i++)
+for(j=0;j<1275;j++);
+}
+
+void main(){
+unsigned char i,key=0,a=0x01;
+TRISA = 0x00;
+TRISBbits.RB1 = 1 ; //sw0 
+TRISBbits.RB0 = 1 ; //sw1
+TRISCbits.RC2 = 0;  //buzzer
+TRISDbits.RD7 = 0; //relay 
+while(1){
+
+if(PORTBbits.RB1 == 0){key = 0;} //sw0 pressed
+if(PORTBbits.RB0 == 0){key = 1;} //sw1 pressed
+
+if(key == 0){
+ a = 0x08;
+PORTCbits.RC2 = 1; //buzzer on
+PORTDbits.RD7 = 1; //relay on
+for(i=0;i<8;i++){
+PORTA = a;
+a= a>>1;
+delay(100);
+}
+}
+
+if(key == 1){
+ a = 0x01;
+PORTCbits.RC2 = 0; //buzzer off
+PORTDbits.RD7 = 0; //relay off
+for(i=0;i<8;i++){
+PORTA = a;
+a= a<<1;
+delay(100);
+}
+}
+}
+}

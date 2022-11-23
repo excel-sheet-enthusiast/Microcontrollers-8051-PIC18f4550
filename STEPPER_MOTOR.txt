@@ -1,0 +1,24 @@
+// STEPPER MOTOR
+
+#include<reg51.h>
+void msdelay unsigned int time
+unsigned int I,j;
+for (I=0; I<time; I++)
+for (J<0; J<1275; j++)
+void main()
+{
+unsigned int arr[4]= {0X09; 0X06; 0X0C; 0X03};
+unsigned int I;
+while(1)
+{
+for(I=0; I<4; I++)
+{
+P2= arr[i];
+msdelay(100):
+}
+}
+};
+
+
+
+

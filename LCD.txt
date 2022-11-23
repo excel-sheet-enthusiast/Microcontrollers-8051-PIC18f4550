@@ -1,0 +1,81 @@
+LCD
+
+#include<p18f4550.h>
+#include "vector_relocate.h"
+
+#define LCD_DATA PORTD
+#define ctrl PORTE
+#define rs PORTEbits.RE0 //register select signal 
+#define rw PORTEbits.RE1 //read/write signal
+#define en PORTEbits.RE2 //enable signal 
+
+void delay(unsigned int t);
+void init_LCD();
+void LCD_data(unsigned char data);
+void LCD_command(unsigned char cmd);
+void LCD_write_string(static char * str);
+
+void delay(unsigned int t){
+
+unsigned int i,j;
+for(i=0;i<t;i++)
+for(j=0;j<1275;j++);
+}
+
+void LCD_command(unsigned char cmd){
+LCD_DATA=cmd;
+rs=0;
+rw=0;
+en=1;
+delay(50);
+en=0;
+
+}
+
+void LCD_data(unsigned char data){
+LCD_DATA=data;
+rs=1;
+rw=0;
+en=1;
+delay(50);
+en=0;
+
+}
+
+void init_LCD(){
+LCD_command(0x38); // to initialize the LCD
+delay(15);
+LCD_command(0x01); // clear LCD
+delay(15);
+LCD_command(0x0C); //cursor off
+delay(15);
+LCD_command(0x80); //go to the first line and 0th position
+delay(15);
+}
+
+void LCD_write_string(static char * str){
+unsigned int i =0;
+while(str[i]!='/0'){
+LCD_data(str[i]);
+delay(15);
+i++;
+}
+}
+
+void main(){
+char var1[] = "XYZ";
+char var2[] = "ABC";
+ADCON1 = 0x0F;
+TRISD = 0x00;
+TRISE = 0x00;
+
+init_LCD();
+delay(15);
+LCD_write_string(var1);
+delay(15);
+LCD_command(0xC0);
+LCD_write_string(var2);
+delay(15);
+while(1);
+}
+

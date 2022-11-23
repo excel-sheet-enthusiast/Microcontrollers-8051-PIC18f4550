@@ -1,0 +1,52 @@
+// SQAURE WAVE GENERATION
+
+#include<reg51.h>
+void delay(unsigned int)
+void main()
+
+P1=00;
+while(1)
+{
+P1= 0XFF;
+delay(100);
+
+P2= 0X00;
+delay(100);
+}
+
+//TRIANGULAR WAVE
+
+
+int I,j;
+for(I=0; I<255; I++)
+while(1)
+{
+P1=I;
+} 
+for(j=0; j<255; j++)
+{
+P1=j;
+}
+
+//SAWTOOTH WAVE 
+
+for int I,j;
+while(1)
+{ 
+for(I=0; I<255,i++)
+P1=I
+P1=0X00;
+}
+
+//SIN WAVE
+
+unsigned int I;
+int arr[12]= {128,192,238,255,238,192,128,64,17,0,17,64};
+while(1)
+{
+for(I=0; I<12; I++)
+{
+P1 = arr[i];
+}
+}
+

@@ -1,0 +1,69 @@
+// LED FLASHING 8051
+
+#include<reg51.h>
+void delay(unsigned int); 
+void main()
+{
+while(1)
+{
+P1=0XFF;
+delay(100);
+P2= 0X00;
+delay(100);
+}
+}
+void delay (unsigned int time)
+{
+unsigned int i,j;
+for(i=0; I<time; i++) 
+for(j=0; j<1275; j++) 
+}
+
+//HEX COUNTER 
+
+#include<reg51.h>
+void delay(unsigned int)
+void main()
+{
+P1=0X00;
+{
+while(1)
+{
+int i=0;
+for( i=0; i<255, i++)
+P1= I;
+delay(1000);
+}
+}
+}
+void delay(unsigned int time)
+{
+unsigned int I,j;
+for(I=0; I<time, I++)
+for(J=0; j<1275, J++)
+}; 
+
+//ASCII COUNTER 
+
+#include<reg51.h>
+void delay(unsigned int)
+void main()
+{
+P1=0X00;
+{
+while(1)
+{
+int i=0;
+for(I='A'; I<='Z'; I++)
+P1=I
+delay(1000)
+}
+}
+}
+
+void delay (unsigned but time)
+{
+unsigned int(I,j);
+for (I=0; I<time, I++)
+for (j=0; j<time, j++)
+};

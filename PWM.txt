@@ -1,0 +1,49 @@
+PWM
+
+#include<p18f4550.h>
+#include"vector_relocate.h"
+
+void delay(unsigned int t){
+unsigned int i,j;
+for(i=0;i<t;i++)
+for(j=0;j<1250;j++);
+}
+
+void main(){
+TRISCbits.TRISC2 = 0 ;
+TRISD = 0;
+PR2 = 0XBB;
+CCP1CON = 0x0C;
+T2CON = 0x07;
+
+PORTDbits.RD5 = 1;
+PORTDbits.RD6 = 0;
+while(1){
+ CCPR1L = 0xBB;
+ CCP1CONbits.DC1B0 = 0;
+ CCP1CONbits.DC1B1= 0;
+ delay(50);
+
+CCPR1L = 0x149;
+ CCP1CONbits.DC1B0 = 0;
+ CCP1CONbits.DC1B1= 1;
+ delay(50);
+
+CCPR1L = 0x112;
+ CCP1CONbits.DC1B0 = 1;
+ CCP1CONbits.DC1B1= 0;
+ delay(50);
+
+CCPR1L = 0x4A;
+ CCP1CONbits.DC1B0 = 1;
+ CCP1CONbits.DC1B1= 1;
+ delay(50);
+
+CCPR1L = 0x25;
+ CCP1CONbits.DC1B0 = 0;
+ CCP1CONbits.DC1B1= 1;
+ delay(50);
+
+
+}
+}
